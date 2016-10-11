@@ -28,6 +28,22 @@ namespace VanillaConsole
             var pageId = app.Windows.CurrentWindow.CurrentPageId;
             Console.WriteLine("Current Page ID: " + pageId);
 
+            //Export page as a section
+            app.Publish(pageId, "f:\\projects", 0);
+
+            //get notebook id
+            var notebookId = app.Windows.CurrentWindow.CurrentNotebookId;
+
+            //add page to notebook
+            string pbstrObjectID;
+            app.OpenHierarchy("f:\\projects", notebookId, out pbstrObjectID);
+
+            //get destination section id
+
+            //Merge two sections
+            app.MergeSections(pbstrObjectID, pbstrObjectID);
+
+
             // get the page content, print it out
             string xmlPage;
             app.GetPageContent(pageId, out xmlPage);
